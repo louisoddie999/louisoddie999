@@ -1,0 +1,15 @@
+{
+  "name": "wema-first-is-a-habit",
+  "version": "1.0.0",
+  "description": "30-second spec spot for Wema Bank, rendered frame-by-frame from one function of time, in 16:9, 1:1 and 9:16.",
+  "scripts": {
+    "audio": "node audio.js",
+    "render": "node render.js --format 16x9 && node render.js --format 9x16 && node render.js --format 1x1",
+    "build": "npm run audio && npm run render"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.3.0",
+    "playwright-core": "^1.56.1"
+  },
+  "private": true
+}
