@@ -1,11 +1,11 @@
 ---
 name: coded-motion
-description: Build motion-design videos (brand spots, promos, sponsorship pitches, logo reveals, kinetic type, reels) entirely in code as a deterministic canvas renderer, with 8-sample motion blur, a synthesized beat-locked score, and MP4 output in 16:9, 9:16 and 1:1. Use whenever the user asks for motion design, a motion graphics video, an animated ad or promo, a brand spot, or says "/coded-motion". Also use it to finish footage the user supplies, for example "add motion design to this video", "make it premium or cinematic", a grade, titles, an end card or re-formatting to 9:16 (see Footage mode). Do not use it when the user explicitly wants AI video generation (Higgsfield or Seedance).
+description: Build motion design entirely in code, both videos and websites. Videos (brand spots, promos, sponsorship pitches, logo reveals, kinetic type, reels) are made with a deterministic canvas renderer, with 8-sample motion blur, a synthesized beat-locked score, and MP4 output in 16:9, 9:16 and 1:1. Use whenever the user asks for motion design, a motion graphics video, an animated ad or promo, a brand spot, or says "/coded-motion". Also use it to finish footage the user supplies, for example "add motion design to this video", "make it premium or cinematic", a grade, titles, an end card or re-formatting to 9:16 (see Footage mode). Also use it for motion on websites (see Web mode): an animated hero, scroll storytelling, Three.js, WebGL or shaders, React Three Fiber, GSAP or ScrollTrigger, Lenis smooth scroll, page transitions, animated landing pages, and 3D product or logo scenes. Do not use it when the user explicitly wants AI video generation (Higgsfield or Seedance).
 ---
 
 # Coded motion design
 
-Make the video yourself, in code. Use AI image models only when the brief needs illustrated or photographic frames, and animate those frames with this engine.
+Make the motion yourself, in code, whether it is a rendered video or live on a website. Use AI image models only when the brief needs illustrated or photographic frames, and animate those frames with this engine.
 
 ## 1. Improve the brief first
 Before building anything, rewrite the request as a tight brief, save it as `BRIEF.md` and show it to the user. Wait for approval, unless the user has already said to go ahead; in that case, show the brief and proceed, and say that they can redirect you:
@@ -60,7 +60,18 @@ When the job is to finish existing footage rather than build graphics from scrat
 - **Sound.** Keep the production sound and mix the synthesized score under it at about equal RMS. Duck the production sound too wherever the score goes silent for effect.
 - **Honesty.** Label AI-generated footage as such, and quote scripture or brand copy verbatim with its source.
 
-## 6. Review loop, then deliver
+## 6. Web mode (motion on websites)
+For interactive motion that runs live on a site, **read `references/web-motion.md` before building.** It covers stack choice, craft rules, budgets and fallbacks, tested GSAP, Lenis and Three.js skeletons, and a separate web review loop. In short:
+- **Stack.** Pick the lightest stack that does the job: CSS or the Web Animations API, then GSAP with ScrollTrigger and SplitText, then Three.js or React Three Fiber only when the idea needs 3D. Check the current library versions at build time.
+- **Same design language.** The brief, design system, easing and one big idea carry over from video, so the site and its promo videos move the same way.
+- **Performance, access and SEO are part of the craft.**
+  - Core Web Vitals: LCP < 2.5 s, CLS < 0.1, INP < 200 ms; 60 fps on a mid-range phone.
+  - Show a poster image first and lazy-load WebGL; pause the render when it is offscreen.
+  - Respect `prefers-reduced-motion`, keep copy as real DOM text, and never flash more than 3 times per second.
+- **Bridge to video.** Every web scene exposes `window.__motion.seek(t)` and renders deterministically with `?capture`, so `render.js` can turn the same scene into 16:9, 9:16 and 1:1 MP4s.
+
+## 7. Review loop, then deliver
+For web jobs, follow the review loop in `references/web-motion.md` instead of this one.
 1. Render review stills at `--sub 2` for every scene. Build contact sheets with ffmpeg `tile` and actually look at them. Fix layout, overlap and timing, then check again.
 2. Check the audio with an ebur128 loudness reading (both integrated and true peak) and a spectrogram with the beat times drawn over it. Read the RMS at each hit and each intentional silence to confirm the timing. Say plainly that you can't listen to it.
 3. Do the full render at `--sub 8`. It costs about 8 times as much as `--sub 1`, so run it in the background with workers, report progress, and time a few frames first to give an estimate. Verify duration, resolution and fps with ffprobe, and review a filmstrip of the final MP4.
