@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>David × Goliath</title>
+  <meta name="description" content="A scroll story of 1 Samuel 17: five smooth stones, a champion of Gath, and a sling. Your scroll is the sling." />
+  <meta name="theme-color" content="#0b0a09" />
+  <meta property="og:title" content="David × Goliath" />
+  <meta property="og:description" content="Your scroll is the sling. A scroll story of 1 Samuel 17." />
+  <meta property="og:image" content="img/hero.webp" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='17' rx='11' ry='8' fill='%23D4AF6A'/%3E%3C/svg%3E" />
+  <link rel="preload" as="image" href="img/hero.webp" imagesrcset="img/hero-960.webp 960w, img/hero.webp 1920w" imagesizes="100vw" fetchpriority="high" />
+  <script>
+    // Start states only apply when JS runs; if the app never boots, show everything.
+    document.documentElement.classList.add("js");
+    setTimeout(function () { if (!window.__ready) document.documentElement.classList.remove("js"); }, 3000);
+  </script>
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#brook">Skip to the story</a>
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <canvas class="stage" aria-hidden="true"></canvas>
+  <div class="flash" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="mark">
+    <span>David <i>×</i> Goliath</span>
+    <span class="mark__ref">1 Samuel 17</span>
+  </header>
+
+  <main>
+    <section class="chapter hero" id="hero">
+      <figure class="bg"><img src="img/hero.webp" srcset="img/hero-960.webp 960w, img/hero.webp 1920w" sizes="100vw" alt="Over David's shoulder, Goliath stands far across the dry valley." fetchpriority="high" width="1920" height="804" /></figure>
+      <div class="copy copy--left copy--hero">
+        <p class="eyebrow" data-hero>The Valley of Elah</p>
+        <h1 data-split>David <i>×</i> Goliath</h1>
+        <span class="rule" data-hero></span>
+        <p class="lede" data-hero>Your scroll is the sling.</p>
+      </div>
+      <p class="cue" data-hero aria-hidden="true">Scroll</p>
+    </section>
+
+    <section class="chapter brook" id="brook">
+      <figure class="bg"><img src="img/brook.webp" srcset="img/brook-960.webp 960w, img/brook.webp 1920w" sizes="100vw" alt="A hand lifts a smooth dark stone from a clear brook." loading="lazy" width="1920" height="804" /></figure>
+      <div class="copy copy--left">
+        <p class="num">I · The Brook</p>
+        <h2 data-split>Five smooth stones</h2>
+        <span class="rule"></span>
+        <blockquote>
+          <p data-lines>“And he took his staff in his hand, and chose him five smooth stones out of the brook, and put them in a shepherd’s bag… and his sling was in his hand.”</p>
+          <cite>1 Samuel 17:40</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="chapter champion" id="champion">
+      <figure class="bg"><img src="img/champion.webp" srcset="img/champion-960.webp 960w, img/champion.webp 1920w" sizes="100vw" alt="Goliath in scale armour, spear in hand, towering against the sky." loading="lazy" width="1920" height="804" /></figure>
+      <div class="copy copy--right">
+        <p class="num">II · The Champion</p>
+        <h2 data-split>Goliath, of Gath</h2>
+        <span class="rule"></span>
+        <blockquote>
+          <p data-lines>“…whose height was six cubits and a span. And he had an helmet of brass upon his head, and he was armed with a coat of mail.”</p>
+          <cite>1 Samuel 17:4–5</cite>
+        </blockquote>
+        <dl class="stats">
+          <div><dt><b data-count="2.97" data-dec="2">2.97</b> m</dt><dd>six cubits and a span · about 9 ft 9 in</dd></div>
+          <div><dt><b data-count="5000">5,000</b> shekels</dt><dd>of brass, his coat of mail · about 57 kg</dd></div>
+          <div><dt><b data-count="600">600</b> shekels</dt><dd>of iron, his spear’s head · about 6.8 kg</dd></div>
+        </dl>
+        <p class="note">Approximate, taking an 18 in cubit and about 11.4 g per shekel. The Dead Sea Scrolls (4QSamᵃ) and the Septuagint read “four cubits and a span”, about 2.06 m.</p>
+      </div>
+      <svg class="ruler" viewBox="0 0 60 600" aria-hidden="true" preserveAspectRatio="xMidYMax meet">
+        <line class="ruler__spine" x1="30" y1="600" x2="30" y2="0" />
+        <g class="ruler__ticks"></g>
+      </svg>
+    </section>
+
+    <section class="chapter answer" id="answer">
+      <figure class="bg"><img src="img/answer.webp" srcset="img/answer-960.webp 960w, img/answer.webp 1920w" sizes="100vw" alt="The stone hangs in the air before the armoured giant and his shield-bearer." loading="lazy" width="1920" height="804" /></figure>
+      <div class="copy copy--center">
+        <p class="num">III · The Answer</p>
+        <blockquote class="big">
+          <p data-lines>“Thou comest to me with a sword, and with a spear, and with a shield: but I come to thee in the name of the LORD of hosts.”</p>
+          <cite>1 Samuel 17:45</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="chapter sling" id="sling">
+      <div class="pin">
+        <figure class="bg"><img src="img/sling.webp" srcset="img/sling-960.webp 960w, img/sling.webp 1920w" sizes="100vw" alt="David runs and whirls the sling toward Goliath." loading="lazy" width="1920" height="804" /></figure>
+        <figure class="bg bg--strike"><img src="img/strike.webp" srcset="img/strike-960.webp 960w, img/strike.webp 1920w" sizes="100vw" alt="The stone meets Goliath's forehead beneath the brass helmet." loading="lazy" width="1920" height="804" /></figure>
+        <div class="copy copy--left">
+          <p class="num">IV · The Sling</p>
+          <ol class="beats">
+            <li>“David hasted, and ran toward the army to meet the Philistine.</li>
+            <li>And David put his hand in his bag, and took thence a stone,</li>
+            <li>and slang it,</li>
+            <li>and smote the Philistine in his forehead.”</li>
+          </ol>
+          <cite>1 Samuel 17:48–49</cite>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter fall" id="fall">
+      <figure class="bg"><img src="img/fall.webp" srcset="img/fall-960.webp 960w, img/fall.webp 1920w" sizes="100vw" alt="Goliath lies face down in the dust, his helmet in the dirt." loading="lazy" width="1920" height="804" /></figure>
+      <div class="copy copy--center">
+        <p class="num">V · The Fall</p>
+        <h2 class="fall__line" data-split>and he fell upon his face to the earth.</h2>
+        <cite>1 Samuel 17:49</cite>
+      </div>
+    </section>
+
+    <section class="chapter battle" id="battle">
+      <figure class="bg"><img src="img/end.webp" srcset="img/end-960.webp 960w, img/end.webp 1920w" sizes="100vw" alt="" loading="lazy" width="1920" height="804" /></figure>
+      <div class="copy copy--center">
+        <p class="num">VI · The Battle</p>
+        <h2 class="huge" data-split>“for the battle is the LORD’s”</h2>
+        <span class="rule"></span>
+        <cite>1 Samuel 17:47</cite>
+      </div>
+    </section>
+
+    <section class="film" id="film">
+      <p class="num">VII · The Film</p>
+      <h2>Giants fall</h2>
+      <div class="film__frame">
+        <video controls preload="none" playsinline poster="film/poster.webp" width="1280" height="720">
+          <source src="film/davidxgoliath-720.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <p class="note">A 30-second cinematic cut. The footage is AI-generated and is not a historical depiction; the grade, titles, motion design and score were made in code.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Scripture quoted from the King James Version, 1 Samuel 17. Measurements are approximate.</p>
+    <p>Built with Three.js, GSAP and Lenis · Type: Cinzel &amp; Cormorant Garamond</p>
+  </footer>
+</body>
+</html>
