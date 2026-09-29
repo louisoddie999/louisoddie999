@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Louis Odiatu — Prompt to Product</title>
+    <link rel="stylesheet" href="fonts.css" />
+    <style>
+      html, body { margin: 0; height: 100%; background: #04060C; overflow: hidden; }
+      canvas { display: block; width: 100vw; height: 100vh; object-fit: contain; }
+      #play { position: fixed; inset: 0; display: grid; place-items: center; cursor: pointer;
+        color: #FFF4E6; font: 600 14px 'JetBrains Mono', monospace; letter-spacing: 4px; }
+      body.capture #play, body.playing #play { display: none; }
+    </style>
+  </head>
+  <body>
+    <canvas id="reel" width="1920" height="1080"></canvas>
+    <script>
+      // ?format=16x9 | 1x1 | 9x16
+      window.FORMAT = new URLSearchParams(location.search).get('format') || '4x5';
+      const c = document.getElementById('reel');
+      c.width = window.FORMAT === '16x9' ? 1920 : 1080;
+      c.height = { '9x16': 1920, '4x5': 1350 }[window.FORMAT] || 1080;
+    </script>
+    <div id="play">CLICK TO PLAY ▶</div>
+    <script src="timeline.js"></script>
+    <script src="landdots.js"></script>
+    <script src="film.js"></script>
+    <script>
+      // ?capture → deterministic frame-by-frame rendering driven by render.js.
+      // Otherwise → a live, real-time player (one sample per frame) synced to the soundtrack.
+      const capture = new URLSearchParams(location.search).has('capture');
+      if (capture) document.body.classList.add('capture');
+      FILM.init(document.getElementById('reel')).then(() => {
+        if (capture) return (window.READY = true);
+        FILM.drawTime(0, { subframes: 1 });
+        const audio = new Audio('out/reel.wav');
+        document.getElementById('play').onclick = () => {
+          document.body.classList.add('playing');
+          audio.currentTime = 0;
+          audio.play().catch(() => {});
+          const t0 = performance.now();
+          const tick = () => {
+            const t = audio.paused || audio.ended ? (performance.now() - t0) / 1000 : audio.currentTime;
+            FILM.drawTime(Math.min(t, FILM.DURATION - 1 / FILM.FPS), { subframes: 1 });
+            if (t < FILM.DURATION) requestAnimationFrame(tick);
+            else document.body.classList.remove('playing');
+          };
+          requestAnimationFrame(tick);
+        };
+      });
+    </script>
+  </body>
+</html>
