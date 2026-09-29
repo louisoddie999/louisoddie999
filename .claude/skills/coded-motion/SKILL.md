@@ -47,7 +47,18 @@ When the brief calls for real logos or illustrated or photographic frames:
 - Show the frame-by-frame prompts for approval **before** spending credits.
 - Animate the approved frames in the engine with parallax layers, panel wipes and kinetic type.
 
-## 5. Review loop, then deliver
+## 5. Footage mode (the user supplies video)
+When the job is to finish existing footage rather than build graphics from scratch, keep the craft standards and change the engine:
+- **Engine.** Don't seek a `<video>` in the browser, because it isn't frame-accurate. Decode with ffmpeg to 16-bit RGB (`rgb48le`, lanczos upscale with about 8% overscan for shake and punch-ins). Render each frame in Python with numpy and OpenCV as a pure function of `(source frame, t)`, then pipe it to ffmpeg. Run the same `--stills`, `--sub`, `--format` and `--workers` flags.
+- **Beats come from the picture.** Find the story beats from contact sheets and the audio RMS envelope, for example the loudest transient is the impact. Then choose the BPM so the key events land on downbeats; whole bars filling the duration comes second. Snap title in-points to beats.
+- **Grade.** Apply saturation, a teal-shadow and amber-highlight split-tone and a filmic S-curve with lifted blacks, then bloom, anamorphic streaks, vignette and luma-weighted grain. Do motion blur by averaging the camera warp over the shutter, before the grade.
+- **Reframe, don't crop.** Measure where the subject sits (x and y) from a gridded contact sheet. Keyframe the window per shot and clamp it inside the source. Letterbox 16:9 at 2.39:1, and give 1:1 a 4:3 window and 9:16 a 4:5 window, putting type into the bands.
+- **Sound.** Keep the production sound and mix the synthesized score under it at about equal RMS. Duck the production sound too wherever the score goes silent for effect.
+- **Loudness.** Master with two-pass `loudnorm` to I=−14 LUFS and TP=−1 dBTP, then confirm with an ebur128 reading.
+- **Randomness.** Seed every random source, including grain banks, shake noise and particles, so the render stays deterministic.
+- **Honesty.** Label AI-generated footage as such, and quote scripture or brand copy verbatim with its source.
+
+## 6. Review loop, then deliver
 1. Render review stills at `--sub 2` for every scene. Build contact sheets with ffmpeg `tile` and actually look at them. Fix layout, overlap and timing, then check again.
 2. Check the audio with an ebur128 loudness reading and a spectrogram or waveform image. Say plainly that you can't listen to it.
 3. Do the full render at `--sub 8`. Verify duration, resolution and fps with ffprobe, and review a filmstrip of the final MP4.
